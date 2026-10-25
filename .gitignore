@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.streamlit/secrets.toml
+.env
+.DS_Store
+Thumbs.db
+mta_1706.csv
+mta_1708.csv
+mta_1710.csv
+mta_1712.csv
+kaggle_transport_cleaned.csv
