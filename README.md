@@ -109,3 +109,6 @@ This project is intended for educational and demonstration purposes. The dashboa
 ## Author
 
 Developed as a Smart City transport analytics project using Python, data analysis, interactive visualization, and machine learning.
+## Dashboard Preview
+
+![TransitIQ Dashboard Overview](screenshots/overview.png)
