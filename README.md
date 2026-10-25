@@ -2,6 +2,12 @@
 
 An interactive data analytics dashboard designed to explore public transport performance, identify congestion patterns, and predict delays using machine learning.
 
+## 🚀 Live Demo
+
+**Try TransitIQ here:** [Open Smart City Public Transport Optimizer](https://smart-city-transport-optimizer-bxjte98evfwcrrfjlb96vs.streamlit.app/)
+
+Explore the interactive dashboard, analyze transport routes, investigate congestion patterns, and try the delay prediction feature.
+
 ## 📌 Project Overview
 
 TransitIQ helps users explore transport data through interactive visualizations, route-level analysis, congestion insights, and machine-learning-based delay prediction. It combines data processing, analytics, and interactive maps in a single dashboard.
