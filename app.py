@@ -28,7 +28,6 @@ ORANGE = "#FF9D52"
 RED = "#FF5369"
 CYAN = "#36C8FF"
 NAVY = "#071329"
-
 PANEL = "#0B1B35"
 PALETTE = [BLUE, PURPLE, GREEN, ORANGE, RED, CYAN]
 
@@ -49,24 +48,23 @@ st.markdown("""
 
 .stApp {
     background:
-        radial-gradient(ellipse at 80% 0%, #142B54 0%, transparent 34%),
-        radial-gradient(ellipse at 0% 55%, #0B1C38 0%, transparent 38%),
+        radial-gradient(ellipse at 82% 0%, #172E59 0%, transparent 34%),
+        radial-gradient(ellipse at 0% 65%, #0C1D39 0%, transparent 30%),
         #061126;
     color:var(--text);
     font-family:'DM Sans',sans-serif;
 }
 
 [data-testid="stHeader"] {
-    background:rgba(6,17,38,.78);
+    background:rgba(6,17,38,.65);
+    backdrop-filter:blur(16px);
 }
 
-[data-testid="stToolbar"] {
-    right:1rem;
-}
+[data-testid="stToolbar"] {right:1rem}
 
 .block-container {
     max-width:1800px;
-    padding:1.5rem 1.8rem 3rem;
+    padding:1.5rem 1.8rem 3.5rem;
 }
 
 h1,h2,h3,h4,p,label {
@@ -82,7 +80,9 @@ p,label {
 }
 
 [data-testid="stSidebar"] {
-    background:linear-gradient(180deg,#091832 0%,#071329 100%);
+    background:
+        radial-gradient(ellipse at 20% 0%,#14284B 0%,transparent 40%),
+        linear-gradient(180deg,#091832 0%,#071329 100%);
     border-right:1px solid #20395D;
 }
 
@@ -121,12 +121,12 @@ p,label {
     background:linear-gradient(135deg,#3478F6,#764DFF);
     box-shadow:0 0 24px #3478F655;
     font-size:24px;
-    transition:transform .3s,box-shadow .3s;
+    transition:transform .3s ease,box-shadow .3s ease;
 }
 
 .brand-icon:hover {
-    transform:rotate(-8deg) scale(1.08);
-    box-shadow:0 0 35px #3478F688;
+    transform:rotate(-8deg) scale(1.1);
+    box-shadow:0 0 32px #3478F699;
 }
 
 .brand span {
@@ -194,10 +194,11 @@ p,label {
     color:#5DE8C1;
     font-size:11px;
     font-weight:700;
-    transition:all .25s;
+    transition:all .25s ease;
 }
 
 .status-pill:hover {
+    border-color:#14D6A0;
     box-shadow:0 0 22px #14D6A022;
     transform:translateY(-2px);
 }
@@ -231,9 +232,14 @@ p,label {
     100% {background-position:200% center}
 }
 
-@keyframes softGlow {
-    0%,100% {box-shadow:0 0 8px #3478F610}
-    50% {box-shadow:0 0 22px #3478F622}
+@keyframes glow {
+    0%,100% {box-shadow:0 0 0 rgba(52,120,246,0)}
+    50% {box-shadow:0 0 22px rgba(52,120,246,.12)}
+}
+
+@keyframes borderGlow {
+    0%,100% {border-color:#1B365C}
+    50% {border-color:#315B91}
 }
 
 .metric-card {
@@ -243,17 +249,17 @@ p,label {
     border:1px solid #1B365C;
     border-radius:17px;
     padding:18px 18px 16px;
-    min-height:145px;
+    min-height:139px;
     transition:transform .28s ease,border-color .28s ease,
         box-shadow .28s ease,background .28s ease;
     animation:rise .45s ease both;
 }
 
 .metric-card:hover {
-    transform:translateY(-7px) scale(1.015);
+    transform:translateY(-6px) scale(1.015);
     border-color:#438BFF;
-    box-shadow:0 14px 35px #0005,0 0 22px #3478F622;
-    background:linear-gradient(145deg,#172F55,#0C1C36);
+    box-shadow:0 12px 32px #0005,0 0 18px #3478F622;
+    background:linear-gradient(145deg,#142E53,#0C1C36);
 }
 
 .metric-card:after {
@@ -268,7 +274,6 @@ p,label {
     opacity:.07;
     filter:blur(5px);
     transition:transform .35s ease,opacity .35s ease;
-    pointer-events:none;
 }
 
 .metric-card:hover:after {
@@ -287,7 +292,6 @@ p,label {
     font-size:11px;
     font-weight:600;
     color:#9BB1D1;
-    letter-spacing:.3px;
 }
 
 .metric-icon {
@@ -300,7 +304,7 @@ p,label {
     background:color-mix(in srgb,var(--accent) 19%,transparent);
     color:var(--accent);
     font-size:19px;
-    transition:transform .3s;
+    transition:transform .3s ease;
 }
 
 .metric-card:hover .metric-icon {
@@ -327,14 +331,13 @@ p,label {
     background:linear-gradient(145deg,#0D203D,#09172E);
     border:1px solid #1B365C;
     border-radius:17px;
-    padding:19px;
-    transition:transform .25s,border-color .25s,box-shadow .25s;
-    animation:rise .35s ease both;
+    padding:17px;
+    transition:border-color .25s,box-shadow .25s,transform .25s;
 }
 
 .panel:hover {
-    border-color:#3478F6;
-    box-shadow:0 10px 28px #0003,0 0 18px #3478F615;
+    border-color:#3B6597;
+    box-shadow:0 8px 24px #0003,0 0 16px #3478F610;
     transform:translateY(-2px);
 }
 
@@ -353,6 +356,13 @@ p,label {
     line-height:1.6;
 }
 
+.section-divider {
+    height:1px;
+    background:linear-gradient(90deg,#3478F6,#895BFF,transparent);
+    margin:13px 0 18px;
+    opacity:.7;
+}
+
 .small-muted {
     font-size:11px;
     color:#8DA5C8;
@@ -366,6 +376,76 @@ p,label {
     padding:10px 4px;
 }
 
+.info-strip {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:linear-gradient(100deg,#10284A,#101F3C);
+    border:1px solid #25466E;
+    border-radius:13px;
+    padding:13px 15px;
+    margin:8px 0 18px;
+    transition:all .25s ease;
+}
+
+.info-strip:hover {
+    border-color:#438BFF;
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px #0002;
+}
+
+.info-strip-icon {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:36px;
+    height:36px;
+    border-radius:11px;
+    background:#3478F622;
+    color:#70AAFF;
+    font-size:18px;
+}
+
+.info-strip-title {
+    color:#E7F0FF;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:3px;
+}
+
+.info-strip-text {
+    color:#91A9CA;
+    font-size:10px;
+    line-height:1.6;
+}
+
+.mini-stat {
+    background:#0B1B35;
+    border:1px solid #1B365C;
+    border-radius:12px;
+    padding:12px;
+    transition:all .25s ease;
+}
+
+.mini-stat:hover {
+    transform:translateY(-3px);
+    border-color:#3478F6;
+    box-shadow:0 7px 20px #0002;
+}
+
+.mini-stat-label {
+    color:#8DA5C8;
+    font-size:10px;
+    letter-spacing:.5px;
+}
+
+.mini-stat-value {
+    color:#ECF4FF;
+    font-size:19px;
+    font-weight:800;
+    margin-top:5px;
+}
+
 div[data-testid="stPlotlyChart"] {
     background:linear-gradient(145deg,#0D203D,#09172E);
     border:1px solid #1B365C;
@@ -376,23 +456,23 @@ div[data-testid="stPlotlyChart"] {
 }
 
 div[data-testid="stPlotlyChart"]:hover {
-    border-color:#438BFF;
+    border-color:#315F95;
     transform:translateY(-3px);
-    box-shadow:0 10px 26px #0003,0 0 18px #3478F615;
+    box-shadow:0 10px 25px #0002;
 }
 
 div[data-testid="stMetric"] {
-    background:linear-gradient(145deg,#102441,#0B1B35);
+    background:linear-gradient(145deg,#0D203D,#09172E);
     border:1px solid #1B365C;
     border-radius:13px;
     padding:14px;
-    transition:all .25s;
+    transition:all .25s ease;
 }
 
 div[data-testid="stMetric"]:hover {
     border-color:#3478F6;
-    transform:translateY(-3px);
-    box-shadow:0 7px 20px #0003;
+    transform:translateY(-2px);
+    box-shadow:0 7px 20px #0002;
 }
 
 div[data-testid="stMetric"] label {
@@ -405,7 +485,8 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     font-weight:800;
 }
 
-.stButton>button,.stDownloadButton>button {
+.stButton>button,
+.stDownloadButton>button {
     background:#10284A;
     color:#DCEAFF;
     border:1px solid #284A79;
@@ -415,7 +496,8 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     transition:all .22s ease;
 }
 
-.stButton>button:hover,.stDownloadButton>button:hover {
+.stButton>button:hover,
+.stDownloadButton>button:hover {
     background:#1B3E70;
     color:white;
     border-color:#4A91FF;
@@ -423,31 +505,22 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     box-shadow:0 7px 20px #3478F626;
 }
 
-.stButton>button:active,.stDownloadButton>button:active {
-    transform:scale(.98);
+.stButton>button:active,
+.stDownloadButton>button:active {
+    transform:translateY(0) scale(.98);
 }
 
-.stButton>button[kind="primary"] {
+.stButton>button[kind="primary"],
+.stDownloadButton>button[kind="primary"] {
     background:linear-gradient(100deg,#3478F6,#7758FA);
     border:0;
     color:white;
-}
-
-.stButton>button[kind="primary"]:hover {
-    background:linear-gradient(100deg,#4989FF,#937AFF);
-    box-shadow:0 0 24px #3478F644;
 }
 
 [data-testid="stDataFrame"] {
     border:1px solid #1B365C;
     border-radius:12px;
     overflow:hidden;
-    transition:border-color .2s,box-shadow .2s;
-}
-
-[data-testid="stDataFrame"]:hover {
-    border-color:#3478F6;
-    box-shadow:0 5px 18px #0002;
 }
 
 [data-baseweb="select"]>div {
@@ -457,9 +530,9 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     transition:border-color .2s,box-shadow .2s;
 }
 
-[data-baseweb="select"]>div:hover {
+[data-baseweb="select"]>div:focus-within {
     border-color:#438BFF;
-    box-shadow:0 0 10px #3478F622;
+    box-shadow:0 0 0 2px #3478F622;
 }
 
 [data-testid="stTextInput"] input,
@@ -474,7 +547,7 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
 [data-testid="stTextInput"] input:focus,
 [data-testid="stNumberInput"] input:focus {
     border-color:#438BFF;
-    box-shadow:0 0 0 1px #438BFF;
+    box-shadow:0 0 0 2px #3478F622;
 }
 
 [data-testid="stSlider"] [data-testid="stTickBar"] {
@@ -520,7 +593,7 @@ footer,#MainMenu {
     background:#142A4B;
     border-color:#2A4D7D;
     transform:translateX(4px);
-    box-shadow:0 4px 14px #0002;
+    box-shadow:0 5px 15px #0002;
 }
 
 [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
@@ -539,23 +612,20 @@ footer,#MainMenu {
     font-size:13px!important;
 }
 
-[data-testid="stSidebar"] [data-testid="stMultiSelect"] {
-    margin-bottom:8px;
+[data-testid="stSidebar"] [data-testid="stMultiSelect"] span {
+    border-radius:7px;
 }
 
-[data-testid="stVerticalBlock"] > div {
+div[data-testid="stVerticalBlock"] > div {
     animation:rise .25s ease both;
 }
 
-div[data-testid="stForm"] {
-    background:#0B1B35;
-    border:1px solid #1B365C;
-    border-radius:15px;
-    padding:15px;
+[data-testid="stTabs"] button {
+    transition:all .2s ease;
 }
 
-[data-testid="stProgressBar"] > div > div {
-    background:linear-gradient(90deg,#3478F6,#895BFF,#14D6A0);
+[data-testid="stTabs"] button:hover {
+    color:#70AAFF;
 }
 
 @media(max-width:850px) {
@@ -568,6 +638,7 @@ div[data-testid="stForm"] {
     *,*:before,*:after {
         animation:none!important;
         transition:none!important;
+        scroll-behavior:auto!important;
     }
 }
 </style>
@@ -593,6 +664,32 @@ def section(title, subtitle=None):
             f'<div class="section-sub">{subtitle}</div>',
             unsafe_allow_html=True,
         )
+
+
+def section_line():
+    st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
+
+
+def info_strip(title, description, icon="✦"):
+    st.markdown(f"""
+    <div class="info-strip">
+        <div class="info-strip-icon">{icon}</div>
+        <div>
+            <div class="info-strip-title">{title}</div>
+            <div class="info-strip-text">{description}</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+
+def mini_stat(col, label, value):
+    with col:
+        st.markdown(f"""
+        <div class="mini-stat">
+            <div class="mini-stat-label">{label}</div>
+            <div class="mini-stat-value">{value}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
 
 def metric(col, label, value, foot, color, icon="●"):
@@ -653,7 +750,8 @@ def parse_time(series):
         unit = (
             "ns" if magnitude >= 1e17 else
             "us" if magnitude >= 1e14 else
-            "ms" if magnitude >= 1e11 else "s"
+            "ms" if magnitude >= 1e11 else
+            "s"
         )
         return pd.to_datetime(numeric, unit=unit, errors="coerce")
 
@@ -707,13 +805,15 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 st.sidebar.markdown("""
-<div class="panel" style="padding:12px;margin-bottom:14px">
-    <div class="eyebrow">COMMAND CENTRE</div>
-    <div style="font-size:12px;color:#DCEAFF;margin-top:7px">
-        Urban mobility intelligence
+<div class="panel" style="margin-bottom:18px;padding:12px">
+    <div style="font-size:10px;color:#819FC7;letter-spacing:1.2px">
+        COMMAND CENTRE
     </div>
-    <div style="font-size:10px;color:#8199BE;margin-top:5px">
-        Route analytics · ML forecasting
+    <div style="font-size:12px;color:#E5EEFF;font-weight:700;margin-top:6px">
+        Urban Mobility Workspace
+    </div>
+    <div style="font-size:10px;color:#8199BB;margin-top:4px">
+        Analyze · Monitor · Predict
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -750,14 +850,6 @@ page_icons = {
 
 if "navigation_page" not in st.session_state:
     st.session_state["navigation_page"] = "Overview"
-
-if st.session_state["navigation_page"] not in pages:
-    st.session_state["navigation_page"] = "Overview"
-
-
-def navigate_to(target):
-    st.session_state["navigation_page"] = target
-
 
 page = st.sidebar.radio(
     "Navigation",
@@ -803,30 +895,28 @@ filtered = df[
     & df["timestamp"].dt.date.between(start_date, end_date)
 ].copy()
 
-st.sidebar.markdown("""
-<div class="nav-caption">SYSTEM MONITOR</div>
+st.sidebar.divider()
+
+st.sidebar.markdown(f"""
 <div class="panel">
     <div style="font-size:10px;color:#819FC7;letter-spacing:1px">
         SYSTEM STATUS
     </div>
     <div style="color:#14D6A0;font-size:13px;font-weight:700;margin-top:9px">
-        ● Data engine available
+        <span class="status-dot" style="display:inline-block;margin-right:7px"></span>
+        Data engine available
     </div>
-    <div style="font-size:10px;color:#8DA5C8;margin-top:5px">
+    <div style="font-size:10px;color:#8DA5C8;margin-top:7px">
         Local dataset connection
     </div>
     <div style="height:1px;background:#1B365C;margin:12px 0"></div>
     <div style="display:flex;justify-content:space-between;gap:8px">
-        <span style="font-size:10px;color:#8DA5C8">Loaded records</span>
-        <span style="font-size:11px;color:#EAF3FF;font-weight:700">
-            """ + f"{len(df):,}" + """
-        </span>
+        <span style="font-size:10px;color:#8DA5C8">Source records</span>
+        <span style="font-size:11px;color:#E5EEFF;font-weight:700">{len(df):,}</span>
     </div>
     <div style="display:flex;justify-content:space-between;gap:8px;margin-top:7px">
-        <span style="font-size:10px;color:#8DA5C8">Available routes</span>
-        <span style="font-size:11px;color:#EAF3FF;font-weight:700">
-            """ + f"{df['route_id'].nunique():,}" + """
-        </span>
+        <span style="font-size:10px;color:#8DA5C8">Selected records</span>
+        <span style="font-size:11px;color:#58A2FF;font-weight:700">{len(filtered):,}</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -913,6 +1003,13 @@ if page == "Overview":
 
     st.write("")
 
+    info_strip(
+        "Network intelligence is active",
+        f"Analyzing {len(filtered):,} transport records across "
+        f"{filtered['route_id'].nunique()} routes for the selected period.",
+        "⌖",
+    )
+
     map_col, side_col = st.columns([1.85, 1], gap="medium")
 
     with map_col:
@@ -944,14 +1041,10 @@ if page == "Overview":
                     control_scale=True,
                 )
 
-                for i, (route_id, group) in enumerate(
-                    gps.groupby("route_id")
-                ):
+                for i, (route, group) in enumerate(gps.groupby("route_id")):
                     group = group.sort_values("timestamp")
                     color = PALETTE[i % len(PALETTE)]
-                    points = group[
-                        ["latitude", "longitude"]
-                    ].values.tolist()
+                    points = group[["latitude", "longitude"]].values.tolist()
 
                     if len(points) > 1:
                         folium.PolyLine(
@@ -959,7 +1052,7 @@ if page == "Overview":
                             color=color,
                             weight=3,
                             opacity=0.85,
-                            tooltip=f"Route {route_id}",
+                            tooltip=f"Route {route}",
                         ).add_to(m)
 
                     step = max(1, len(group) // 20)
@@ -973,7 +1066,7 @@ if page == "Overview":
                             fill_color=color,
                             fill_opacity=0.9,
                             tooltip=(
-                                f"Route: {route_id} | "
+                                f"Route: {route} | "
                                 f"Delay: {row.delay_minutes:.1f} min"
                             ),
                         ).add_to(m)
@@ -984,6 +1077,11 @@ if page == "Overview":
                     height=450,
                     key="transitiq_dark_map",
                 )
+
+                gps_a, gps_b, gps_c = st.columns(3)
+                mini_stat(gps_a, "GPS OBSERVATIONS", f"{len(gps):,}")
+                mini_stat(gps_b, "MAPPED ROUTES", f"{gps['route_id'].nunique():,}")
+                mini_stat(gps_c, "UNIQUE GPS POINTS", f"{gps[['latitude', 'longitude']].drop_duplicates().shape[0]:,}")
 
     with side_col:
         section("Route performance", "Ranked by average delay")
@@ -998,11 +1096,7 @@ if page == "Overview":
             for _, row in ranking.iterrows():
                 delay = max(0, float(row["avg_delay"]))
                 level = min(100, delay * 4)
-                color = (
-                    RED if delay >= 15
-                    else ORANGE if delay >= 5
-                    else GREEN
-                )
+                color = RED if delay >= 15 else ORANGE if delay >= 5 else GREEN
 
                 st.markdown(f"""
                 <div style="padding:12px 0;border-bottom:1px solid #1B365C">
@@ -1015,7 +1109,7 @@ if page == "Overview":
                         </span>
                     </div>
                     <div style="height:6px;background:#182D4C;border-radius:8px;margin-top:9px;overflow:hidden">
-                        <div style="height:100%;width:{level}%;background:{color};border-radius:8px;transition:width .5s"></div>
+                        <div style="height:100%;width:{level}%;background:{color};border-radius:8px;transition:width .5s ease"></div>
                     </div>
                     <div style="font-size:10px;color:#8199BB;margin-top:5px">
                         {row['avg_speed']:.1f} km/h average speed
@@ -1023,17 +1117,14 @@ if page == "Overview":
                 </div>
                 """, unsafe_allow_html=True)
 
+        st.write("")
         section("Recent observations", "Highest recorded delays")
 
         alerts = filtered.nlargest(4, "delay_minutes")
 
         for _, row in alerts.iterrows():
             delay = float(row["delay_minutes"])
-            color = (
-                RED if delay >= 15
-                else ORANGE if delay >= 5
-                else GREEN
-            )
+            color = RED if delay >= 15 else ORANGE if delay >= 5 else GREEN
 
             st.markdown(f"""
             <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #1B365C">
@@ -1050,7 +1141,6 @@ if page == "Overview":
             """, unsafe_allow_html=True)
 
     st.write("")
-
     left, right = st.columns([1.3, 1], gap="medium")
 
     with left:
@@ -1064,7 +1154,6 @@ if page == "Overview":
         )
 
         fig = go.Figure()
-
         fig.add_trace(go.Scatter(
             x=demand["hour"],
             y=demand["passengers"],
@@ -1100,9 +1189,7 @@ if page == "Overview":
         congestion["score"] = (
             50 * congestion["avg_delay"].rank(pct=True)
             + 30 * congestion["demand"].rank(pct=True)
-            + 20 * (
-                1 - congestion["speed"].rank(pct=True)
-            )
+            + 20 * (1 - congestion["speed"].rank(pct=True))
         )
 
         congestion = congestion.nlargest(5, "score")
@@ -1113,12 +1200,9 @@ if page == "Overview":
             y="route_id",
             orientation="h",
             color="score",
-            color_continuous_scale=[
-                "#14D6A0", "#3478F6", "#FF5369"
-            ],
+            color_continuous_scale=["#14D6A0", "#3478F6", "#FF5369"],
             labels={"score": "Score", "route_id": "Route"},
         )
-
         fig.update_layout(coloraxis_showscale=False)
 
         st.plotly_chart(
@@ -1127,10 +1211,8 @@ if page == "Overview":
             config={"displayModeBar": False},
         )
 
-    section(
-        "Quick actions",
-        "Choose a workspace to explore another part of the network"
-    )
+    st.write("")
+    section("Quick actions", "Jump directly into a workspace")
 
     quick_cols = st.columns(4)
 
@@ -1144,21 +1226,8 @@ if page == "Overview":
     for col, (label, target) in zip(quick_cols, quick_actions):
         with col:
             if st.button(label, use_container_width=True):
-                navigate_to(target)
+                st.session_state["navigation_page"] = target
                 st.rerun()
-
-    st.markdown("""
-    <div class="panel" style="margin-top:16px">
-        <div class="eyebrow">TRANSITIQ INSIGHT</div>
-        <div style="font-size:15px;font-weight:800;color:#EDF4FF;margin-top:8px">
-            Turn transport data into actionable decisions.
-        </div>
-        <div style="font-size:11px;color:#8DA5C8;line-height:1.8;margin-top:7px">
-            Compare route performance, identify busy time windows and
-            explore machine-learning delay forecasts using the available dataset.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
 
 
 elif page == "Route Intelligence":
@@ -1167,6 +1236,13 @@ elif page == "Route Intelligence":
         "ROUTE OPERATIONS / 02",
         "Route intelligence",
         "Investigate individual routes and compare their operating performance.",
+    )
+
+    info_strip(
+        "Route-level diagnostics",
+        "Select a route to inspect its delay trend, operating speed, "
+        "passenger activity and individual observations.",
+        "⌁",
     )
 
     route = st.selectbox(
@@ -1204,36 +1280,12 @@ elif page == "Route Intelligence":
 
         st.write("")
 
-        left_info, right_info = st.columns(2)
-
-        with left_info:
-            st.markdown(f"""
-            <div class="panel">
-                <div class="eyebrow">SELECTED ROUTE</div>
-                <div style="font-size:23px;font-weight:800;color:#EDF4FF;margin-top:8px">
-                    Route {route}
-                </div>
-                <div style="font-size:11px;color:#8DA5C8;margin-top:7px">
-                    {rd["timestamp"].min()} — {rd["timestamp"].max()}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-
-        with right_info:
-            st.markdown(f"""
-            <div class="panel">
-                <div class="eyebrow">OPERATING PROFILE</div>
-                <div style="font-size:23px;font-weight:800;color:#58A2FF;margin-top:8px">
-                    {rd["speed_kmh"].mean():.1f} km/h
-                </div>
-                <div style="font-size:11px;color:#8DA5C8;margin-top:7px">
-                    Average recorded speed for this route
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+        stat_a, stat_b, stat_c = st.columns(3)
+        mini_stat(stat_a, "MAXIMUM OBSERVED DELAY", f"{rd.delay_minutes.max():.1f} min")
+        mini_stat(stat_b, "MAXIMUM RECORDED SPEED", f"{rd.speed_kmh.max():.1f} km/h")
+        mini_stat(stat_c, "DATE RANGE", f"{rd.timestamp.min().date()} → {rd.timestamp.max().date()}")
 
         st.write("")
-
         section(
             "Route performance timeline",
             "Hourly delay and speed trends"
@@ -1287,7 +1339,7 @@ elif page == "Route Intelligence":
         left, right = st.columns(2)
 
         with left:
-            section("Delay distribution")
+            section("Delay distribution", "Frequency of recorded delay values")
 
             fig = px.histogram(
                 rd,
@@ -1295,11 +1347,10 @@ elif page == "Route Intelligence":
                 nbins=25,
                 labels={"delay_minutes": "Delay (minutes)"},
             )
-
             fig.update_traces(
                 marker_color=PURPLE,
-                marker_line_color="#0B1B35",
-                marker_line_width=1,
+                marker_line_color="#B7A4FF",
+                marker_line_width=.5,
             )
 
             st.plotly_chart(
@@ -1308,7 +1359,7 @@ elif page == "Route Intelligence":
             )
 
         with right:
-            section("Passenger activity")
+            section("Passenger activity", "Total recorded passengers by hour")
 
             activity = rd.groupby("hour", as_index=False).agg(
                 passengers=("passengers", "sum")
@@ -1323,11 +1374,10 @@ elif page == "Route Intelligence":
                     "passengers": "Passengers",
                 },
             )
-
             fig.update_traces(
                 marker_color=GREEN,
-                marker_line_color="#0B1B35",
-                marker_line_width=1,
+                marker_line_color="#70F5D1",
+                marker_line_width=.5,
             )
 
             st.plotly_chart(
@@ -1335,7 +1385,7 @@ elif page == "Route Intelligence":
                 use_container_width=True,
             )
 
-        section("Route observations")
+        section("Route observations", "Inspect individual records for this route")
 
         st.dataframe(
             rd.sort_values("timestamp", ascending=False),
@@ -1357,6 +1407,14 @@ elif page == "Congestion Analysis":
         "TRAFFIC OPERATIONS / 03",
         "Congestion analysis",
         "Find pressure points using recorded delays, passenger demand and speed.",
+    )
+
+    info_strip(
+        "How congestion is ranked",
+        "The composite score combines delay (50%), passenger demand (30%) "
+        "and lower average speed (20%). It is a relative indicator, "
+        "not an official traffic measurement.",
+        "▦",
     )
 
     busiest = int(
@@ -1405,15 +1463,10 @@ elif page == "Congestion Analysis":
         + .2 * congestion.slow_rank
     )
 
-    st.write("")
-
     left, right = st.columns(2)
 
     with left:
-        section(
-            "Congestion score by route",
-            "Higher scores indicate greater relative pressure"
-        )
+        section("Congestion score by route", "Higher scores indicate higher relative priority")
 
         fig = px.bar(
             congestion.sort_values("score"),
@@ -1421,15 +1474,12 @@ elif page == "Congestion Analysis":
             y="route_id",
             orientation="h",
             color="score",
-            color_continuous_scale=[
-                "#14D6A0", "#3478F6", "#FF5369"
-            ],
+            color_continuous_scale=["#14D6A0", "#3478F6", "#FF5369"],
             labels={
                 "score": "Score",
                 "route_id": "Route",
             },
         )
-
         fig.update_layout(coloraxis_showscale=False)
 
         st.plotly_chart(
@@ -1438,10 +1488,7 @@ elif page == "Congestion Analysis":
         )
 
     with right:
-        section(
-            "Demand versus delay",
-            "Each point represents a route-hour observation"
-        )
+        section("Demand versus delay", "Each point represents a route-hour group")
 
         fig = px.scatter(
             filtered_hourly,
@@ -1462,10 +1509,7 @@ elif page == "Congestion Analysis":
             use_container_width=True,
         )
 
-    section(
-        "Congestion by hour",
-        "Compare delay and average operating speed across the day"
-    )
+    section("Congestion by hour", "Average delay and speed across the day")
 
     hourly_stats = filtered.groupby("hour", as_index=False).agg(
         delay=("delay_minutes", "mean"),
@@ -1505,61 +1549,16 @@ elif page == "Congestion Analysis":
         use_container_width=True,
     )
 
-    left, right = st.columns([1.2, .8])
+    section("Highest congestion windows", "Top route-hour periods based on the composite score")
 
-    with left:
-        section(
-            "Highest congestion windows",
-            "Top route-hour observations ranked by composite score"
-        )
-
+    if not top_slots.empty:
         st.dataframe(
             top_slots.round(2),
             use_container_width=True,
             hide_index=True,
         )
-
-    with right:
-        section("How the score works")
-
-        st.markdown("""
-        <div class="panel">
-            <div style="font-size:12px;color:#DCEAFF;font-weight:700">
-                Composite congestion score
-            </div>
-            <div style="margin-top:15px">
-                <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:11px;color:#8DA5C8">Average delay</span>
-                    <span style="font-size:11px;color:#FF9D52">50%</span>
-                </div>
-                <div style="height:6px;background:#182D4C;border-radius:6px;margin-top:6px">
-                    <div style="width:50%;height:100%;background:#FF9D52;border-radius:6px"></div>
-                </div>
-            </div>
-            <div style="margin-top:14px">
-                <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:11px;color:#8DA5C8">Passenger demand</span>
-                    <span style="font-size:11px;color:#895BFF">30%</span>
-                </div>
-                <div style="height:6px;background:#182D4C;border-radius:6px;margin-top:6px">
-                    <div style="width:30%;height:100%;background:#895BFF;border-radius:6px"></div>
-                </div>
-            </div>
-            <div style="margin-top:14px">
-                <div style="display:flex;justify-content:space-between">
-                    <span style="font-size:11px;color:#8DA5C8">Lower operating speed</span>
-                    <span style="font-size:11px;color:#36C8FF">20%</span>
-                </div>
-                <div style="height:6px;background:#182D4C;border-radius:6px;margin-top:6px">
-                    <div style="width:20%;height:100%;background:#36C8FF;border-radius:6px"></div>
-                </div>
-            </div>
-            <div style="font-size:10px;color:#8199BB;line-height:1.7;margin-top:15px">
-                Scores are relative to the selected dataset and are intended
-                to help prioritise further investigation.
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    else:
+        st.info("No congestion windows are available for this selection.")
 
     st.download_button(
         "Download congestion report",
@@ -1575,6 +1574,13 @@ elif page == "Delay Prediction":
         "PREDICTIVE INTELLIGENCE / 04",
         "Delay forecast studio",
         "Estimate average route delay with your trained machine-learning model.",
+    )
+
+    info_strip(
+        "Scenario-based forecasting",
+        "Choose a route, hour, peak-hour condition, day and month. "
+        "The existing trained model estimates delay from these inputs.",
+        "◷",
     )
 
     if not MODEL.exists():
@@ -1593,8 +1599,11 @@ elif page == "Delay Prediction":
         features = artifact.get("features", [])
 
         expected = [
-            "route_id", "hour", "is_peak_hour",
-            "day_of_week", "month"
+            "route_id",
+            "hour",
+            "is_peak_hour",
+            "day_of_week",
+            "month",
         ]
 
         if list(features) != expected:
@@ -1604,10 +1613,7 @@ elif page == "Delay Prediction":
         left, right = st.columns([1.15, .85], gap="large")
 
         with left:
-            section(
-                "01 / Configure scenario",
-                "Choose the operating conditions for your prediction"
-            )
+            section("01 / Configure scenario", "Set the conditions for your forecast")
 
             with st.container(border=True):
                 route = st.selectbox(
@@ -1618,7 +1624,9 @@ elif page == "Delay Prediction":
 
                 hour = st.slider(
                     "Hour of day",
-                    0, 23, 8,
+                    0,
+                    23,
+                    8,
                 )
 
                 peak = st.checkbox(
@@ -1627,8 +1635,13 @@ elif page == "Delay Prediction":
                 )
 
                 day_names = [
-                    "Monday", "Tuesday", "Wednesday", "Thursday",
-                    "Friday", "Saturday", "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday",
                 ]
 
                 day = st.selectbox(
@@ -1657,13 +1670,10 @@ elif page == "Delay Prediction":
                 )
 
         with right:
-            section(
-                "Scenario preview",
-                "Review the selected inputs before forecasting"
-            )
+            section("Scenario preview", "Review the selected conditions")
 
             st.markdown(f"""
-            <div class="panel" style="min-height:270px">
+            <div class="panel" style="min-height:245px">
                 <div class="eyebrow">SELECTED SCENARIO</div>
                 <div style="font-size:29px;font-weight:800;color:#EDF4FF;margin-top:15px">
                     Route {route}
@@ -1677,10 +1687,9 @@ elif page == "Delay Prediction":
                 <div style="margin-top:12px;color:{ORANGE if peak else GREEN}">
                     ● {"Peak period" if peak else "Non-peak period"}
                 </div>
-                <div style="height:1px;background:#1B365C;margin:17px 0"></div>
-                <div style="font-size:10px;color:#8DA5C8;line-height:1.8">
-                    The model uses the selected route, hour, peak flag,
-                    day and month to estimate delay.
+                <div style="height:1px;background:#1B365C;margin:16px 0"></div>
+                <div style="font-size:10px;color:#8DA5C8">
+                    MODEL INPUTS · 5 FEATURES
                 </div>
             </div>
             """, unsafe_allow_html=True)
@@ -1700,11 +1709,7 @@ elif page == "Delay Prediction":
 
             predicted = max(
                 0.0,
-                float(
-                    np.asarray(
-                        model.predict(input_data)
-                    ).reshape(-1)[0]
-                ),
+                float(np.asarray(model.predict(input_data)).reshape(-1)[0]),
             )
 
             if predicted >= 15:
@@ -1725,11 +1730,7 @@ elif page == "Delay Prediction":
                 )
 
             st.write("")
-
-            section(
-                "02 / Forecast result",
-                "Prediction generated by the saved machine-learning model"
-            )
+            section("02 / Forecast result", "Model output for the selected scenario")
 
             cols = st.columns(3)
 
@@ -1737,12 +1738,10 @@ elif page == "Delay Prediction":
                 "Predicted delay",
                 f"{predicted:.1f} min",
             )
-
             cols[1].metric(
                 "Delay classification",
                 category,
             )
-
             cols[2].metric(
                 "Peak conditions",
                 "Enabled" if peak else "Disabled",
@@ -1753,60 +1752,27 @@ elif page == "Delay Prediction":
                 <div class="eyebrow">FORECAST INTERPRETATION</div>
                 <h2 style="color:{color}!important">{category} delay level</h2>
                 <p>{recommendation}</p>
+                <div style="background:#172B48;height:8px;border-radius:10px;overflow:hidden;margin-top:15px">
+                    <div style="height:100%;width:{min(100, predicted / 30 * 100):.1f}%;background:{color};border-radius:10px"></div>
+                </div>
+                <div style="font-size:10px;color:#8DA5C8;margin-top:7px">
+                    Visual scale capped at 30 minutes for display
+                </div>
             </div>
             """, unsafe_allow_html=True)
 
-            gauge = go.Figure(go.Indicator(
-                mode="gauge+number",
-                value=predicted,
-                number={
-                    "suffix": " min",
-                    "font": {"color": "#ECF4FF", "size": 30},
-                },
-                title={
-                    "text": "Predicted average delay",
-                    "font": {"color": "#8DA5C8", "size": 13},
-                },
-                gauge={
-                    "axis": {
-                        "range": [0, max(20, predicted * 1.25)],
-                        "tickcolor": "#8DA5C8",
-                    },
-                    "bar": {"color": color},
-                    "bgcolor": "#0B1B35",
-                    "bordercolor": "#1B365C",
-                    "steps": [
-                        {"range": [0, 5], "color": "#102F37"},
-                        {"range": [5, 15], "color": "#352A26"},
-                        {
-                            "range": [
-                                15, max(20, predicted * 1.25)
-                            ],
-                            "color": "#351F32",
-                        },
-                    ],
-                },
-            ))
-
-            gauge.update_layout(
-                paper_bgcolor="rgba(0,0,0,0)",
-                font_color="#ECF4FF",
-                height=260,
-                margin=dict(l=20, r=20, t=45, b=15),
-            )
-
-            st.plotly_chart(
-                gauge,
-                use_container_width=True,
-                config={"displayModeBar": False},
-            )
+            st.session_state["last_prediction"] = {
+                "route_id": route,
+                "hour": hour,
+                "peak": peak,
+                "day": day_names[day],
+                "month": month_names[month - 1],
+                "predicted_delay": predicted,
+                "classification": category,
+            }
 
         st.write("")
-
-        section(
-            "Model evaluation metrics",
-            "Performance values recorded during model testing"
-        )
+        section("Model evaluation metrics", "Evaluation values stored in the model artifact")
 
         cols = st.columns(3)
 
@@ -1815,13 +1781,11 @@ elif page == "Delay Prediction":
             f"{artifact['mae']:.2f} min"
             if artifact.get("mae") is not None else "N/A",
         )
-
         cols[1].metric(
             "Test RMSE",
             f"{artifact['rmse']:.2f} min"
             if artifact.get("rmse") is not None else "N/A",
         )
-
         cols[2].metric(
             "Test R²",
             f"{artifact['r2']:.3f}"
@@ -1840,6 +1804,14 @@ elif page == "Model Insights":
         "Evaluate model quality, feature importance and prediction errors.",
     )
 
+    info_strip(
+        "Understand before you interpret",
+        "MAE and RMSE describe prediction error in the target's units. "
+        "R² describes fit relative to a baseline; none alone guarantees "
+        "reliable real-world forecasts.",
+        "✳",
+    )
+
     if not MODEL.exists():
         st.error("Model file not found. Run train_model.py first.")
         st.stop()
@@ -1855,13 +1827,11 @@ elif page == "Model Insights":
             f"{artifact['mae']:.2f} min"
             if artifact.get("mae") is not None else "N/A",
         )
-
         cols[1].metric(
             "Root Mean Squared Error",
             f"{artifact['rmse']:.2f} min"
             if artifact.get("rmse") is not None else "N/A",
         )
-
         cols[2].metric(
             "R² Score",
             f"{artifact['r2']:.3f}"
@@ -1870,45 +1840,10 @@ elif page == "Model Insights":
 
         st.caption(
             "Lower MAE and RMSE generally indicate smaller prediction errors. "
-            "R² describes the model's fit and should be interpreted in context."
+            "R² should be interpreted alongside the dataset and test setup."
         )
 
-        st.markdown("""
-        <div class="panel" style="margin-top:12px">
-            <div class="eyebrow">MODEL QUALITY GUIDE</div>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-                <div style="flex:1;min-width:140px">
-                    <div style="color:#36C8FF;font-weight:800;font-size:13px">
-                        MAE
-                    </div>
-                    <div style="font-size:11px;color:#8DA5C8;margin-top:5px;line-height:1.7">
-                        Average absolute difference between actual and predicted delays.
-                    </div>
-                </div>
-                <div style="flex:1;min-width:140px">
-                    <div style="color:#FF9D52;font-weight:800;font-size:13px">
-                        RMSE
-                    </div>
-                    <div style="font-size:11px;color:#8DA5C8;margin-top:5px;line-height:1.7">
-                        Gives larger errors more influence than MAE.
-                    </div>
-                </div>
-                <div style="flex:1;min-width:140px">
-                    <div style="color:#14D6A0;font-weight:800;font-size:13px">
-                        R²
-                    </div>
-                    <div style="font-size:11px;color:#8DA5C8;margin-top:5px;line-height:1.7">
-                        Describes how well predictions fit observed variation.
-                    </div>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        section(
-            "Feature importance",
-            "Inspect which input features contribute most to model predictions"
-        )
+        section("Feature importance", "Inspect which model inputs contribute most")
 
         if (
             hasattr(model, "named_steps")
@@ -1916,17 +1851,8 @@ elif page == "Model Insights":
             and "regressor" in model.named_steps
         ):
             try:
-                names = (
-                    model.named_steps[
-                        "preprocessor"
-                    ].get_feature_names_out()
-                )
-
-                values = (
-                    model.named_steps[
-                        "regressor"
-                    ].feature_importances_
-                )
+                names = model.named_steps["preprocessor"].get_feature_names_out()
+                values = model.named_steps["regressor"].feature_importances_
 
                 importance = pd.DataFrame({
                     "Feature": names,
@@ -1938,13 +1864,15 @@ elif page == "Model Insights":
                     x="Importance",
                     y="Feature",
                     orientation="h",
-                    labels={"Feature": "Input feature"},
+                    labels={
+                        "Feature": "Input feature",
+                        "Importance": "Importance",
+                    },
                 )
-
                 fig.update_traces(
                     marker_color=PURPLE,
-                    marker_line_color="#0B1B35",
-                    marker_line_width=1,
+                    marker_line_color="#B7A4FF",
+                    marker_line_width=.5,
                 )
 
                 st.plotly_chart(
@@ -1968,14 +1896,9 @@ elif page == "Model Insights":
                 "through the expected pipeline."
             )
 
-        section(
-            "Actual versus predicted",
-            "Compare recorded test-set predictions when available"
-        )
+        section("Actual versus predicted", "Compare model estimates against stored test records")
 
-        predictions_path = (
-            BASE / "models" / "test_predictions.csv"
-        )
+        predictions_path = BASE / "models" / "test_predictions.csv"
 
         if predictions_path.exists():
             results = pd.read_csv(predictions_path)
@@ -1992,10 +1915,7 @@ elif page == "Model Insights":
                     errors="coerce",
                 )
 
-                for column in [
-                    "Actual Delay",
-                    "Predicted Delay",
-                ]:
+                for column in ["Actual Delay", "Predicted Delay"]:
                     results[column] = pd.to_numeric(
                         results[column],
                         errors="coerce",
@@ -2010,8 +1930,7 @@ elif page == "Model Insights":
                 ).sort_values("timestamp")
 
                 results["Absolute Error"] = (
-                    results["Actual Delay"]
-                    - results["Predicted Delay"]
+                    results["Actual Delay"] - results["Predicted Delay"]
                 ).abs()
 
                 cols = st.columns(3)
@@ -2020,12 +1939,10 @@ elif page == "Model Insights":
                     "Test records",
                     f"{len(results):,}",
                 )
-
                 cols[1].metric(
                     "Mean actual delay",
                     f"{results['Actual Delay'].mean():.1f} min",
                 )
-
                 cols[2].metric(
                     "Mean absolute error",
                     f"{results['Absolute Error'].mean():.2f} min",
@@ -2052,16 +1969,14 @@ elif page == "Model Insights":
                     use_container_width=True,
                 )
 
+                error_values = (
+                    results["Predicted Delay"] - results["Actual Delay"]
+                )
+
                 fig = px.histogram(
-                    results,
-                    x=(
-                        results["Predicted Delay"]
-                        - results["Actual Delay"]
-                    ),
+                    x=error_values,
                     nbins=25,
-                    labels={
-                        "x": "Prediction error (minutes)"
-                    },
+                    labels={"x": "Prediction error (minutes)"},
                 )
 
                 fig.update_traces(marker_color=PURPLE)
@@ -2095,27 +2010,24 @@ elif page == "Model Insights":
                 "if your training script generates this file."
             )
 
+        st.write("")
         left, right = st.columns(2)
 
         with left:
             st.markdown(f"""
-            <div class="panel">
+            <div class="panel" style="min-height:110px">
                 <div class="eyebrow">TRAINED UNTIL</div>
                 <h3>{artifact.get("trained_until", "Not available")}</h3>
-                <div style="font-size:10px;color:#8DA5C8">
-                    Training period metadata
-                </div>
+                <div class="small-muted">Training data cutoff stored in artifact</div>
             </div>
             """, unsafe_allow_html=True)
 
         with right:
             st.markdown(f"""
-            <div class="panel">
+            <div class="panel" style="min-height:110px">
                 <div class="eyebrow">TEST PERIOD START</div>
                 <h3>{artifact.get("tested_from", "Not available")}</h3>
-                <div style="font-size:10px;color:#8DA5C8">
-                    Evaluation period metadata
-                </div>
+                <div class="small-muted">Test period metadata stored in artifact</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -2131,6 +2043,13 @@ elif page == "Data Explorer":
         "Search, inspect, validate and export the underlying transport records.",
     )
 
+    info_strip(
+        "Explore your dataset",
+        "Filter the records, choose columns for the table and CSV export, "
+        "and inspect missing values and column types.",
+        "▤",
+    )
+
     explorer = filtered.copy()
 
     cols = st.columns(4)
@@ -2140,19 +2059,16 @@ elif page == "Data Explorer":
         f"{len(explorer):,}",
         "Filtered dataset", BLUE, "▤"
     )
-
     metric(
         cols[1], "UNIQUE ROUTES",
         f"{explorer.route_id.nunique():,}",
         "Route identifiers", PURPLE, "⌁"
     )
-
     metric(
         cols[2], "MISSING VALUES",
         f"{explorer.isna().sum().sum():,}",
         "Across selected columns", ORANGE, "!"
     )
-
     metric(
         cols[3], "DUPLICATE ROWS",
         f"{explorer.duplicated().sum():,}",
@@ -2160,11 +2076,7 @@ elif page == "Data Explorer":
     )
 
     st.write("")
-
-    section(
-        "Search and filter",
-        "Narrow down records before inspecting or exporting them"
-    )
+    section("Search and filter", "Narrow the displayed records")
 
     left, right = st.columns([1.2, 1])
 
@@ -2219,15 +2131,12 @@ elif page == "Data Explorer":
             pd.to_numeric(
                 explorer["delay_minutes"],
                 errors="coerce",
-            ).between(
-                delay_range[0],
-                delay_range[1],
-            )
+            ).between(delay_range[0], delay_range[1])
         ]
 
     section(
         "Dataset preview",
-        f"{len(explorer):,} matching records"
+        f"{len(explorer):,} matching records",
     )
 
     columns = explorer.columns.tolist()
@@ -2242,8 +2151,7 @@ elif page == "Data Explorer":
             "speed_kmh",
             "latitude",
             "longitude",
-        ]
-        if col in columns
+        ] if col in columns
     ]
 
     selected_columns = st.multiselect(
@@ -2285,32 +2193,24 @@ elif page == "Data Explorer":
         st.warning("Select at least one column.")
 
     st.write("")
-
     left, right = st.columns(2)
 
     with left:
         section(
             "Missing values by column",
-            "Columns containing missing values in the current view"
+            "Columns with incomplete values in the filtered data",
         )
 
         missing = (
-            explorer.isna()
-            .sum()
+            explorer.isna().sum()
             .rename("Missing Values")
             .reset_index()
         )
-
         missing.columns = ["Column", "Missing Values"]
-
-        missing = missing[
-            missing["Missing Values"] > 0
-        ]
+        missing = missing[missing["Missing Values"] > 0]
 
         if missing.empty:
-            st.success(
-                "No missing values in the filtered data."
-            )
+            st.success("No missing values in the filtered data.")
         else:
             st.dataframe(
                 missing,
@@ -2321,7 +2221,7 @@ elif page == "Data Explorer":
     with right:
         section(
             "Column information",
-            "Data types and unique value counts"
+            "Data types and distinct non-null values",
         )
 
         types = pd.DataFrame({
@@ -2343,75 +2243,34 @@ elif page == "Data Explorer":
         )
 
     st.write("")
+    section("Data quality summary")
 
-    section(
-        "Dataset health",
-        "Quick validation indicators for the currently filtered records"
-    )
+    quality_cols = st.columns(3)
 
     total_cells = explorer.shape[0] * explorer.shape[1]
     missing_cells = int(explorer.isna().sum().sum())
-
     completeness = (
-        100 * (total_cells - missing_cells) / total_cells
-        if total_cells > 0 else 0
+        100 * (1 - missing_cells / total_cells)
+        if total_cells else 0
     )
 
-    duplicate_count = int(explorer.duplicated().sum())
-
-    health_cols = st.columns(3)
-
-    with health_cols[0]:
-        st.markdown(f"""
-        <div class="panel">
-            <div class="eyebrow">DATA COMPLETENESS</div>
-            <div style="font-size:28px;font-weight:800;color:#14D6A0;margin-top:10px">
-                {completeness:.1f}%
-            </div>
-            <div style="height:6px;background:#182D4C;border-radius:6px;margin-top:12px">
-                <div style="width:{completeness}%;height:100%;background:#14D6A0;border-radius:6px"></div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with health_cols[1]:
-        st.markdown(f"""
-        <div class="panel">
-            <div class="eyebrow">MISSING CELLS</div>
-            <div style="font-size:28px;font-weight:800;color:{ORANGE if missing_cells else GREEN};margin-top:10px">
-                {missing_cells:,}
-            </div>
-            <div style="font-size:10px;color:#8DA5C8;margin-top:8px">
-                Across all visible columns
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with health_cols[2]:
-        st.markdown(f"""
-        <div class="panel">
-            <div class="eyebrow">DUPLICATE RECORDS</div>
-            <div style="font-size:28px;font-weight:800;color:{RED if duplicate_count else GREEN};margin-top:10px">
-                {duplicate_count:,}
-            </div>
-            <div style="font-size:10px;color:#8DA5C8;margin-top:8px">
-                Exact duplicate rows in current view
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+    mini_stat(
+        quality_cols[0],
+        "DATA COMPLETENESS",
+        f"{completeness:.1f}%",
+    )
+    mini_stat(
+        quality_cols[1],
+        "TOTAL COLUMNS",
+        f"{explorer.shape[1]:,}",
+    )
+    mini_stat(
+        quality_cols[2],
+        "DUPLICATE ROWS",
+        f"{explorer.duplicated().sum():,}",
+    )
 
     st.caption(
         "Exports do not modify the source dataset. Statistics reflect "
         "the currently selected filters."
     )
-
-st.markdown("""
-<div style="border-top:1px solid #1B365C;margin-top:35px;padding-top:15px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <div style="font-size:10px;color:#6685AF;letter-spacing:1px">
-        TRANSITIQ · SMART CITY MOBILITY
-    </div>
-    <div style="font-size:10px;color:#6685AF">
-        Route analytics · Congestion intelligence · Delay forecasting
-    </div>
-</div>
-""", unsafe_allow_html=True)
