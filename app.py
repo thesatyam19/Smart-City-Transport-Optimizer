@@ -1211,6 +1211,7 @@ if page == "Overview":
             config={"displayModeBar": False},
         )
 
+    
     st.write("")
     section("Quick actions", "Jump directly into a workspace")
 
@@ -1223,11 +1224,21 @@ if page == "Overview":
         ("▤  Explore data", "Data Explorer"),
     ]
 
+    def navigate_to(target):
+        st.session_state["navigation_page"] = target
+
     for col, (label, target) in zip(quick_cols, quick_actions):
         with col:
-            if st.button(label, use_container_width=True):
-                st.session_state["navigation_page"] = target
-                st.rerun()
+            st.button(
+                label,
+                use_container_width=True,
+                on_click=navigate_to,
+                args=(target,),
+            )
+
+
+
+
 
 
 elif page == "Route Intelligence":
